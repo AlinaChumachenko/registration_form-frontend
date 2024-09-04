@@ -20,6 +20,7 @@ export default function RegisterForm() {
       setPassword('');
 
       router.push('/login');
+      
     } catch (error) {
       setMessage('Error: ' + error.response.data.message);
     }
