@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ export default function RegisterForm() {
           required
         />
         <button type="submit" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-        >Register</button>
+        >REGISTER</button>
       </form>
       {message && <p>{message}</p>}
       <Link className="text-textColor text-xl" href="/login">
@@ -63,4 +63,6 @@ export default function RegisterForm() {
       </Link>
     </div>
   );
-}
+};
+
+export default RegisterForm;

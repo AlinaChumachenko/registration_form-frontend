@@ -27,3 +27,9 @@ module.exports = {
   },
   plugins: [],
 };
+
+// .color1 {color: #a7be97;}
+// .color2 {color: #d8d0aa;}
+// .color3 {color: #101d06;}
+// .color4 {color: #777a75;}
+// .color5 {color: #e5e5e5;}

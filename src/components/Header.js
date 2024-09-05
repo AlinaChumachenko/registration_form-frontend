@@ -1,5 +1,5 @@
 import Link from "next/link";
-export default function Header() {
+const Header = () => {
     return (
     <header className="w-full bg-secondBody drop-shadow-md rounded-3xl">
       <div className="flex h-[75px] rounded-lg items-center justify-end p-5">
@@ -10,4 +10,6 @@ export default function Header() {
       </div>
     </header>
     )
-  }
+  };
+
+  export default Header;

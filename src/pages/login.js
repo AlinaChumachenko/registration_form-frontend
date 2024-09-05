@@ -1,9 +1,9 @@
-// import { LoginForm } from '../../components/LoginForm/LoginForm.jsx';
+import LoginForm from "@@/components/LoginForm";
 
 export default function Login() {
   return (
-    <div>
-      {/* <LoginForm /> */}
+    <div className='mx-auto w-full px-4'>
+      <LoginForm />
     </div>
   );
 }
