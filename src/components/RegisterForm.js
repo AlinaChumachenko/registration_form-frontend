@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/register', { name, email, password });
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/register`, { name, email, password });
       setMessage(response.data.message);
       setName('');
       setEmail('');

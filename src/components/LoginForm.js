@@ -12,7 +12,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { email, password });
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/login`, { email, password });
       setMessage(response.data.message);
       setEmail('');
       setPassword('');
