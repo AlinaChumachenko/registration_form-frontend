@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import IconClose from "../../public/images/closex.svg";
@@ -12,6 +12,19 @@ const [expenses, setExpenses] = useState([]);
 const [expenseName, setExpenseName] = useState('');
 const [amount, setAmount] = useState('');
 const [date, setDate] = useState('');
+
+useEffect(() => {
+    const savedExpenses = localStorage.getItem('expenses');
+    if (savedExpenses) {
+      setExpenses(JSON.parse(savedExpenses));
+    }
+  }, []);
+
+useEffect(() => {
+    if (expenses.length > 0) {
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+    }
+}, [expenses]);  
 const handleOpenModal = () => {
     // setIsOpenModal((prev) => !prev);
     setIsOpenModal(true);
