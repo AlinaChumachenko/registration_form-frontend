@@ -31,6 +31,11 @@ const AddExpense = () => {
     setExpenses([...expenses, expense]);
   };
 
+  const calculateTotal = () => {
+    return expenses.reduce((total, expense) => 
+      total + parseFloat(expense.amount), 0).toFixed(2);
+  };
+
   return (
     <div>
       <button
@@ -48,6 +53,10 @@ const AddExpense = () => {
       />
 
       <div className="mt-6">
+      <div className="mb-4 text-lg font-semibold">
+          Total Expenses: ${calculateTotal()}
+      </div>
+
         {expenses.length > 0 ? (
           <div className="flex flex-col space-y-4">
             {expenses.map((expense, index) => (
