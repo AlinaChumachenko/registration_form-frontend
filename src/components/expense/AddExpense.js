@@ -37,6 +37,10 @@ const AddExpense = () => {
       total + parseFloat(expense.amount), 0).toFixed(2);
   };
 
+  const removeExpense = (index) => {
+    setExpenses(expenses.filter((_, i) => i !== index));
+  };
+
   return (
     <div>
       <AddExpenseBtn onClick={handleOpenModal} />
@@ -60,6 +64,7 @@ const AddExpense = () => {
                 name={expense.name}
                 amount={expense.amount}
                 date={expense.date}
+                onRemove={() => removeExpense(index)} 
               />
             ))}
           </div>

@@ -1,5 +1,5 @@
+// import Balanse from "@@/components/Balanse";
 import AddBudget from "@@/components/budget/AddBudget";
-// import SetButgetBtn from "@@/components/budget/SetBudgetBtn";
 import AddExpense from "@@/components/expense/AddExpense";
 
 
@@ -11,6 +11,7 @@ export default function Expense() {
     <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
     <AddBudget />
     <AddExpense />
+    {/* <Balanse /> */}
     </div>
     )
   }
