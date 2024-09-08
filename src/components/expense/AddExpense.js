@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import AddExpenseModal from "./AddExpenseModal";
 import ExpenseCard from "./ExpenseCard";
 import AddExpenseBtn from "./AddExpenseBtn";
+import Balanse from "../Balanse"; 
 
-const AddExpense = () => {
+const AddExpense = ({ budget }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [expenses, setExpenses] = useState([]);
 
@@ -50,6 +51,8 @@ const AddExpense = () => {
         closeModal={closeModal}
         addExpense={addExpense}
       />
+
+      <Balanse budget={budget} expenses={expenses} />
 
       <div className="mt-6">
       <div className="mb-4 text-lg font-semibold">
