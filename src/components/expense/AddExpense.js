@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddExpenseModal from "./AddExpenseModal";
 import ExpenseCard from "./ExpenseCard";
+import AddExpenseBtn from "./AddExpenseBtn";
 
 const AddExpense = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -38,13 +39,7 @@ const AddExpense = () => {
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={handleOpenModal}
-        className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-      >
-        ADD EXPENSE
-      </button>
+      <AddExpenseBtn onClick={handleOpenModal} />
 
       <AddExpenseModal
         isOpenModal={isOpenModal}

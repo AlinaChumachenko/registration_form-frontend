@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddBudgetModal from "./AddBudgetModal";
+import SetBudgetBtn from "./SetBudgetBtn";
 
 
 const AddBudget = () => {
@@ -21,13 +22,8 @@ const AddBudget = () => {
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={handleOpenModal}
-        className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-      >
-        SET BUDGET
-      </button>
+
+      <SetBudgetBtn onClick={handleOpenModal} />
 
       <AddBudgetModal
         isOpenModal={isOpenModal}
@@ -35,11 +31,11 @@ const AddBudget = () => {
         setBudget={handleSetBudget}
       />
 
-      <div className="mt-6">
+      {/* <div className="mt-6"> */}
       <div className="mb-4 text-lg font-semibold">
         Budget: ${budget !== null ? budget : 'Not set'}
       </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
