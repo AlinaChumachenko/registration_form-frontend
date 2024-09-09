@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddBudgetModal from "./AddBudgetModal";
 import SetBudgetBtn from "./SetBudgetBtn";
 
 const AddBudget = ({ onBudgetChange }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [budget, setBudget] = useState(null);
+
+  useEffect(() => {
+    const savedBudget = localStorage.getItem('budget');
+    if (savedBudget) {
+        try {
+            setBudget(JSON.parse(savedBudget));
+        } catch (error) {
+            console.error('Ошибка разбора сохраненного бюджета:', error);
+        }
+    }
+
+}, []);
+
+ useEffect(() => {
+  if (budget !== null) {
+    localStorage.setItem('budget', JSON.stringify(budget));
+  }
+}, [budget]);
+  
 
   const handleOpenModal = () => {
     setIsOpenModal(true);
@@ -16,7 +35,7 @@ const AddBudget = ({ onBudgetChange }) => {
 
   const handleSetBudget = (amount) => {
     setBudget(amount);
-    onBudgetChange(amount); // Передаем бюджет родительскому компоненту
+    onBudgetChange(amount); 
     closeModal();
   };
 

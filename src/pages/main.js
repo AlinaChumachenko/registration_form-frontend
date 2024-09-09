@@ -10,15 +10,34 @@ export default function Main() {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    const savedExpenses = localStorage.getItem('expenses');
-
-    if (savedExpenses) {
-      setExpenses(JSON.parse(savedExpenses));
+    const savedBudget = localStorage.getItem('budget');
+    if (savedBudget) {
+        try {
+            setBudget(JSON.parse(savedBudget));
+        } catch (error) {
+            console.error('Ошибка разбора сохраненного бюджета:', error);
+        }
     }
-  }, []);
 
+    const savedExpenses = localStorage.getItem('expenses');
+    if (savedExpenses) {
+        try {
+            setExpenses(JSON.parse(savedExpenses));
+        } catch (error) {
+            console.error('Ошибка разбора сохраненных расходов:', error);
+        }
+    }
+}, []);
+
+  // Save budget to localStorage whenever it changes
   useEffect(() => {
-    // console.log('Saving expenses to localStorage:', expenses);
+    if (budget !== null) {
+      localStorage.setItem('budget', JSON.stringify(budget));
+    }
+  }, [budget]);
+
+  // Save expenses to localStorage whenever they change
+  useEffect(() => {
     if (expenses.length > 0) {
       localStorage.setItem('expenses', JSON.stringify(expenses));
     }

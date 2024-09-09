@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import AddExpenseModal from "./AddExpenseModal";
 import ExpenseCard from "./ExpenseCard";
 import AddExpenseBtn from "./AddExpenseBtn";
 
-const AddExpense = ({ budget, expenses, addExpense, removeExpense }) => {
+const AddExpense = ({ expenses, addExpense, removeExpense }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleOpenModal = () => {
