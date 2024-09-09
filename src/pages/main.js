@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AddBudget from "@@/components/budget/AddBudget";
 import AddExpense from "@@/components/expense/AddExpense";
 import Balanse from "@@/components/Balanse";
+import Header from "@@/components/Header";
+import Footer from "@@/components/Footer";
 
 export default function Expense() {
   const [budget, setBudget] = useState(null);
@@ -45,11 +47,18 @@ export default function Expense() {
   };
 
   return (
-    <div className='flex min-h-screen flex-col p-10'>
+    <div className='flex min-h-screen flex-col p-10 gap-y-4'>
+      <Header />
       <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
       <AddBudget onBudgetChange={handleBudgetChange} />
       <Balanse budget={budget} expenses={expenses} />
-      <AddExpense budget={budget} expenses={expenses} addExpense={handleAddExpense} removeExpense={handleRemoveExpense} />
+      <AddExpense 
+        budget={budget} 
+        expenses={expenses} 
+        addExpense={handleAddExpense} 
+        removeExpense={handleRemoveExpense} 
+      />
+      <Footer />
     </div>
   );
 }

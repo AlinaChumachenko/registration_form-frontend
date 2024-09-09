@@ -17,7 +17,7 @@ const LoginForm = () => {
       setEmail('');
       setPassword('');
 
-      router.push('/expenseList');
+      router.push('/main');
 
     } catch (error) {
       setMessage('Error: ' + error.response.data.message);

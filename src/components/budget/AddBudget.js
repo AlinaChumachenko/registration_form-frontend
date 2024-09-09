@@ -16,7 +16,7 @@ const AddBudget = ({ onBudgetChange }) => {
 
   const handleSetBudget = (amount) => {
     setBudget(amount);
-    onBudgetChange(amount); // Передаем бюджет родительскому компоненту
+    onBudgetChange(amount); // Передаємо новий бюджет в батьківський компонент
     closeModal();
   };
 
