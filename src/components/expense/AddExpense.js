@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddExpenseModal from "./AddExpenseModal";
 import ExpenseCard from "./ExpenseCard";
 import AddExpenseBtn from "./AddExpenseBtn";
@@ -14,18 +14,29 @@ const AddExpense = ({ budget, expenses, addExpense, removeExpense }) => {
     setIsOpenModal(false);
   };
 
+  const handleAddExpense = (expense) => {
+    addExpense(expense);
+  };
+
+  const calculateTotal = () => {
+    return expenses.reduce((total, expense) => 
+      total + parseFloat(expense.amount), 0).toFixed(2);
+  };
+
   return (
     <div>
       <AddExpenseBtn onClick={handleOpenModal} />
       <AddExpenseModal
         isOpenModal={isOpenModal}
         closeModal={closeModal}
-        addExpense={addExpense}
-      />
+        addExpense={handleAddExpense}
+      />      
+
       <div className="mt-6">
         <div className="mb-4 text-lg font-semibold">
-          Total Expenses: ${expenses.reduce((total, expense) => total + parseFloat(expense.amount), 0).toFixed(2)}
+          Total Expenses: ${calculateTotal()}
         </div>
+
         {expenses.length > 0 ? (
           <div className="flex flex-col space-y-4">
             {expenses.map((expense, index) => (
@@ -34,7 +45,7 @@ const AddExpense = ({ budget, expenses, addExpense, removeExpense }) => {
                 name={expense.name}
                 amount={expense.amount}
                 date={expense.date}
-                onRemove={() => removeExpense(index)}
+                onRemove={() => removeExpense(index)} 
               />
             ))}
           </div>

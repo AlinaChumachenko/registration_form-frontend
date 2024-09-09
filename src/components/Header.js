@@ -8,6 +8,7 @@ const Header = () => {
         <Link className='text-textColor text-2xl font-semibold leading-22'href="/">Home</Link>
         
         <Link className='text-textColor text-2xl font-semibold leading-22'href="/login">Log Out</Link>
+        
         </ul>
       </div>
     </header>

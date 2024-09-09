@@ -27,6 +27,7 @@ const LoginForm = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-y-8 py-2">
       <h1 className="text-textColor text-2xl font-semibold leading-22">Login</h1>
+      
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4 min-w-[400px]">
         <input
           type="email"
@@ -45,8 +46,10 @@ const LoginForm = () => {
           required
         />
         <button type="submit" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-        >LOGIN</button>
+        >LOGIN
+        </button>
       </form>
+
       {message && <p>{message}</p>}
       <Link className="text-textColor text-xl" href="/register">
         Don`t have an account? Register
