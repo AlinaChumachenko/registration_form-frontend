@@ -12,7 +12,7 @@ const AddBudget = ({ onBudgetChange }) => {
         try {
             setBudget(JSON.parse(savedBudget));
         } catch (error) {
-            console.error('Ошибка разбора сохраненного бюджета:', error);
+            console.error(error);
         }
     }
 

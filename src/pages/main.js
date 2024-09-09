@@ -15,7 +15,7 @@ export default function Main() {
         try {
             setBudget(JSON.parse(savedBudget));
         } catch (error) {
-            console.error('Ошибка разбора сохраненного бюджета:', error);
+            console.error( error);
         }
     }
 
@@ -24,19 +24,19 @@ export default function Main() {
         try {
             setExpenses(JSON.parse(savedExpenses));
         } catch (error) {
-            console.error('Ошибка разбора сохраненных расходов:', error);
+            console.error(error);
         }
     }
 }, []);
 
-  // Save budget to localStorage whenever it changes
+  
   useEffect(() => {
     if (budget !== null) {
       localStorage.setItem('budget', JSON.stringify(budget));
     }
   }, [budget]);
 
-  // Save expenses to localStorage whenever they change
+  
   useEffect(() => {
     if (expenses.length > 0) {
       localStorage.setItem('expenses', JSON.stringify(expenses));
@@ -44,12 +44,10 @@ export default function Main() {
   }, [expenses]);
 
   const handleBudgetChange = (newBudget) => {
-    // console.log('Updating budget:', newBudget);
     setBudget(newBudget);
   };
 
   const handleAddExpense = (expense) => {
-    // console.log('Adding expense:', expense);
     setExpenses([...expenses, expense]);
   };
 
