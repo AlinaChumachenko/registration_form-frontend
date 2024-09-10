@@ -53,7 +53,8 @@ const TestExpense = ({ onExpensesUpdate }) => {
     localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
   };
 
-  const totalExpenses = expenses.reduce((total, expense) => total + (isNaN(parseFloat(expense.amount)) ? 0 : parseFloat(expense.amount)), 0);
+  const totalExpenses = expenses.reduce((total, expense) => 
+    total + (isNaN(parseFloat(expense.amount)) ? 0 : parseFloat(expense.amount)), 0);
 
   return (
     <div>

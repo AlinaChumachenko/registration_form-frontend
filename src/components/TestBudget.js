@@ -27,7 +27,7 @@ const TestBudget = ({ onBudgetUpdate }) => {
         const newBudget = parseFloat(amount);
         setBudget(newBudget);
         localStorage.setItem('budget', newBudget);
-        onBudgetUpdate(newBudget); // Обновляем бюджет в родительском компоненте
+        onBudgetUpdate(newBudget); 
         closeModal();
     };
 

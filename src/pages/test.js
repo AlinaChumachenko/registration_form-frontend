@@ -3,6 +3,8 @@ import Header from "@@/components/Header";
 import Footer from "@@/components/Footer";
 import TestBudget from "@@/components/TestBudget";
 import TestExpense from "@@/components/TestExpense";
+import TestBalance from '@@/components/TestBalanse';
+
 
 export default function Test() {
     const [budget, setBudget] = useState(0);
@@ -33,12 +35,11 @@ export default function Test() {
     return (
         <div className='flex min-h-screen flex-col p-10 gap-y-4'>
             <Header />
+            <TestBalance balance={balance} />
             <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
             <TestBudget onBudgetUpdate={handleBudgetUpdate} />
             <TestExpense onExpensesUpdate={handleExpensesUpdate} />
-            <div className="mb-4 text-lg font-semibold">
-                Balance: ${balance.toFixed(2)}
-            </div>
+            
             <Footer />
         </div>
     );
