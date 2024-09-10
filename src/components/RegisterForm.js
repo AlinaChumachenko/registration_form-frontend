@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState } from 'react'; 
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { registerSchema, validateForm } from '@@/utils/validation';
+
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -10,8 +12,15 @@ const RegisterForm = () => {
   const [message, setMessage] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationError = validateForm(registerSchema, { name, email, password });
+    if (validationError) {
+      setMessage(`Validation Error: ${validationError}`);
+      return;
+    }
+
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/register`, { name, email, password });
       setMessage(response.data.message);

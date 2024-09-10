@@ -1,18 +1,47 @@
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import IconClose from "../../../public/images/closex.svg";
-import { useState } from "react";
-// import AddExpenseForm from "./AddExpenseForm";
+import IconClose from "../../public/images/closex.svg";
 
-const AddBudgetModal = ({ isOpenModal, closeModal, setBudget }) => {
+const TestBudget = ({ onBudgetUpdate }) => {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const [amount, setAmount] = useState('');
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setBudget(amount);
+    const [budget, setBudget] = useState(null);
+
+    useEffect(() => {
+        const savedBudget = localStorage.getItem('budget');
+        if (savedBudget) {
+          setBudget(parseFloat(savedBudget));
+        }
+      }, []);
+
+    const handleOpenModal = () => {
+        setIsOpenModal(true);
     };
-  return (
-    <>
-      {isOpenModal && (
+
+    const closeModal = () => {
+        setIsOpenModal(false);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newBudget = parseFloat(amount);
+        setBudget(newBudget);
+        localStorage.setItem('budget', newBudget);
+        onBudgetUpdate(newBudget); // Обновляем бюджет в родительском компоненте
+        closeModal();
+    };
+
+    return (
+        <div> 
+        <button
+        type="button"
+        onClick={handleOpenModal}
+        className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
+        >
+        SET BUDGET
+      </button>
+
+    {isOpenModal && (
         <div className="flex items-center justify-center">
           <div className="flex gap-y-4 flex-col items-center justify-center p-6 rounded-lg shadow-lg ">
             <div className="flex w-full justify-between">
@@ -24,6 +53,7 @@ const AddBudgetModal = ({ isOpenModal, closeModal, setBudget }) => {
               >
                 <Image priority src={IconClose} alt="Close" />
               </button>
+
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4 min-w-[400px]">
                 <input
@@ -43,10 +73,15 @@ const AddBudgetModal = ({ isOpenModal, closeModal, setBudget }) => {
                 </div>
             </form>
           </div>
+            
         </div>
       )}
-    </>
-  );
-};
+      <div className="mb-4 text-lg font-semibold">
+      Budget: ${budget !== null ? budget : 'Not set'}
+        </div>
 
-export default AddBudgetModal;
+    </div>
+    );
+}
+
+export default TestBudget;

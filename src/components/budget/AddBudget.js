@@ -8,21 +8,20 @@ const AddBudget = ({ onBudgetChange }) => {
 
   useEffect(() => {
     const savedBudget = localStorage.getItem('budget');
-    if (savedBudget) {
-        try {
-            setBudget(JSON.parse(savedBudget));
-        } catch (error) {
-            console.error(error);
-        }
+    if(savedBudget) {
+      try {
+          setBudget(JSON.parse(savedBudget));
+      } catch (error) {
+          console.error(error);
+      }
     }
+  }, []);
 
-}, []);
-
- useEffect(() => {
-  if (budget !== null) {
-    localStorage.setItem('budget', JSON.stringify(budget));
-  }
-}, [budget]);
+  useEffect(() => {
+    if (budget !== null) {
+      localStorage.setItem('budget', JSON.stringify(budget));
+    }
+  }, [budget]);
   
 
   const handleOpenModal = () => {
