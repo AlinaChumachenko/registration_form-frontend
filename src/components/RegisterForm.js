@@ -10,6 +10,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
 
    const handleSubmit = async (e) => {
@@ -35,6 +36,10 @@ const RegisterForm = () => {
     }
   };
 
+  const handleClickPasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-y-8 py-2">
       <h1 className="text-textColor text-2xl font-semibold leading-22">Register</h1>
@@ -56,14 +61,23 @@ const RegisterForm = () => {
           className="p-2 border border-secondColor rounded-lg"
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="p-2 border border-secondColor rounded-lg"
-          required
-        />
+        <div className="relative">
+          <input
+            type={passwordVisible ? "text" : "password"} 
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-2 border border-secondColor rounded-lg w-full"
+            required
+          />
+          <button
+            type="button"
+            onClick={handleClickPasswordVisibility}
+            className="absolute right-2 top-2 text-sm text-gray-600"
+          >
+            {passwordVisible ? "Hide" : "Show"} 
+          </button>
+        </div>
         
         <button type="submit" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">
           REGISTER
