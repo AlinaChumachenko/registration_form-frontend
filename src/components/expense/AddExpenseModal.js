@@ -2,7 +2,7 @@ import Image from "next/image";
 import IconClose from "../../../public/images/closex.svg";
 import AddExpenseForm from "./AddExpenseForm";
 
-const AddExpenseModal = ({ isOpenModal, closeModal, addExpense }) => {
+const AddExpenseModal = ({ isOpenModal, closeModal, handleSubmit }) => {
   return (
     <>
       {isOpenModal && (
@@ -19,7 +19,7 @@ const AddExpenseModal = ({ isOpenModal, closeModal, addExpense }) => {
               </button>
             </div>
 
-            <AddExpenseForm onSubmit={addExpense} closeModal={closeModal} />
+            <AddExpenseForm onSubmit={handleSubmit} closeModal={closeModal} />
           </div>
         </div>
       )}

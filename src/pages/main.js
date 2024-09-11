@@ -1,69 +1,46 @@
-import React, { useState, useEffect } from "react";
-import AddBudget from "@@/components/budget/AddBudget";
-import AddExpense from "@@/components/expense/AddExpense";
-import Balanse from "@@/components/Balanse";
+import React, { useState, useEffect } from 'react';
 import Header from "@@/components/Header";
 import Footer from "@@/components/Footer";
+import Balance from '@@/components/Balanse';
+import AddBudget from '@@/components/budget/AddBudget';
+import AddExpense from '@@/components/expense/AddExpense';
+
 
 export default function Main() {
-  const [budget, setBudget] = useState(null);
-  const [expenses, setExpenses] = useState([]);
+    const [budget, setBudget] = useState(0);
+    const [totalExpenses, setTotalExpenses] = useState(0);
+    const [balance, setBalance] = useState(0);
 
-  useEffect(() => {
-    const savedBudget = localStorage.getItem('budget');
-    if (savedBudget) {
-        try {
-            setBudget(JSON.parse(savedBudget));
-        } catch (error) {
-            console.error( error);
-        }
-    }
+    useEffect(() => {
+        const savedBudget = localStorage.getItem('budget');
+        const savedExpenses = localStorage.getItem('expenses');
+        const totalExpenses = savedExpenses ? JSON.parse(savedExpenses).reduce((total, expense) => total + parseFloat(expense.amount), 0) : 0;
+        setBudget(savedBudget ? parseFloat(savedBudget) : 0);
+        setTotalExpenses(totalExpenses);
+    }, []);
 
-    const savedExpenses = localStorage.getItem('expenses');
-    if (savedExpenses) {
-        try {
-            setExpenses(JSON.parse(savedExpenses));
-        } catch (error) {
-            console.error(error);
-        }
-    }
-}, []);
+    useEffect(() => {
+        setBalance(budget - totalExpenses);
+    }, [budget, totalExpenses]);
 
-  
-  useEffect(() => {
-    if (budget !== null) {
-      localStorage.setItem('budget', JSON.stringify(budget));
-    }
-  }, [budget]);
 
-  
-  useEffect(() => {
-    if (expenses.length > 0) {
-      localStorage.setItem('expenses', JSON.stringify(expenses));
-    }
-  }, [expenses]);
+    const handleBudgetUpdate = (newBudget) => {
+        setBudget(newBudget);
+    };
 
-  const handleBudgetChange = (newBudget) => {
-    setBudget(newBudget);
-  };
+    const handleExpensesUpdate = (newTotalExpenses) => {
+        setTotalExpenses(newTotalExpenses);
+    };
 
-  const handleAddExpense = (expense) => {
-    setExpenses([...expenses, expense]);
-  };
-
-  const handleRemoveExpense = (index) => {
-    console.log('Removing expense at index:', index);
-    setExpenses(expenses.filter((_, i) => i !== index));
-  };
-
-  return (
-    <div className='flex min-h-screen flex-col p-10 gap-y-4'>
-      <Header />
-      <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
-      <AddBudget onBudgetChange={handleBudgetChange} />
-      <Balanse budget={budget} expenses={expenses} />
-      <AddExpense budget={budget} expenses={expenses} addExpense={handleAddExpense} removeExpense={handleRemoveExpense} />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className='flex min-h-screen flex-col p-10 gap-y-4'>
+            <Header />
+            <Balance balance={balance} />
+            <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
+            <AddBudget onBudgetUpdate={handleBudgetUpdate} />
+            <AddExpense onExpensesUpdate={handleExpensesUpdate} />
+            
+            <Footer />
+        </div>
+    );
 }
