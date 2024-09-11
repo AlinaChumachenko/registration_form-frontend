@@ -3,6 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from "next/image";
+import { useUser } from '../context/UserContext';
 import IconEye from "../../public/svg/eye.svg";
 import IconEyeOff from "../../public/svg/eye-off.svg";
 import { registerSchema, validateForm } from '@@/utils/validation';
@@ -12,8 +13,9 @@ const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');  
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { setUser } = useUser();
   const router = useRouter();
 
    const handleSubmit = async (e) => {
@@ -27,6 +29,8 @@ const RegisterForm = () => {
 
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/register`, { name, email, password });
+      setUser(response.data.user);
+      
       setMessage(response.data.message);
       setName('');
       setEmail('');

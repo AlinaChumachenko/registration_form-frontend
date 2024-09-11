@@ -3,29 +3,32 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from "next/image";
-
+import { useUser } from '../context/UserContext';
 import IconEye from "../../public/svg/eye.svg";
 import IconEyeOff from "../../public/svg/eye-off.svg";
-import { registerSchema, validateForm } from '@@/utils/validation';
+import { loginSchema, validateForm } from '@@/utils/validation';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { setUser } = useUser();
   const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationError = validateForm(registerSchema, { email, password });
+    const validationError = validateForm(loginSchema, { email, password });
     if (validationError) {
       setMessage(`Validation Error: ${validationError}`);
       return;
     }
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/login`, { email, password });
+      setUser(response.data.user);
+
       setMessage(response.data.message);
       setEmail('');
       setPassword('');
