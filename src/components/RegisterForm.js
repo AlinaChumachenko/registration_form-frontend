@@ -2,6 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from "next/image";
+import IconEye from "../../public/svg/eye.svg";
+import IconEyeOff from "../../public/svg/eye-off.svg";
 import { registerSchema, validateForm } from '@@/utils/validation';
 
 
@@ -75,7 +78,9 @@ const RegisterForm = () => {
             onClick={handleClickPasswordVisibility}
             className="absolute right-2 top-2 text-sm text-gray-600"
           >
-            {passwordVisible ? "Hide" : "Show"} 
+            {passwordVisible ? 
+            <Image priority src={IconEye} alt="Eye" /> : 
+            <Image priority src={IconEyeOff} alt="Eye" />} 
           </button>
         </div>
         
