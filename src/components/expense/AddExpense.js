@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ExpenseCard from "./ExpenseCard";
 import AddExpenseModal from "./AddExpenseModal";
 import AddExpenseBtn from "./AddExpenseBtn";
@@ -53,11 +53,13 @@ const AddExpense = ({ onExpensesUpdate }) => {
     localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
   };
 
-  const totalExpenses = expenses.reduce(
-    (total, expense) =>
-      total + (isNaN(parseFloat(expense.amount)) ? 0 : parseFloat(expense.amount)),
-    0
-  );
+  const totalExpenses = useMemo(() => {
+    return expenses.reduce(
+      (total, expense) =>
+        total + (isNaN(parseFloat(expense.amount)) ? 0 : parseFloat(expense.amount)),
+      0
+    );
+  }, [expenses]);
 
   return (
     <div>

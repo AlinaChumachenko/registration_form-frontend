@@ -4,6 +4,8 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
   const [expenseName, setExpenseName] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
+  const [error, setError] = useState('');
+
 
   useEffect(() => {
     if (editExpense) {
@@ -15,6 +17,18 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!expenseName.trim() || !amount || !date) {
+      setError('Please fill out all fields.');
+      return;
+    }
+
+    if (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
+      setError('Amount must be a positive number.');
+      return;
+    }
+
+    setError('');
     onSubmit({ name: expenseName, amount, date });
     setExpenseName('');
     setAmount('');
@@ -44,6 +58,7 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
         onChange={(e) => setDate(e.target.value)}
         className="p-2 border border-secondColor rounded-lg"
       />
+      {error && <p className="text-red-500">{error}</p>}
       <div className="flex justify-center space-x-2">
         <button
           type="submit"
