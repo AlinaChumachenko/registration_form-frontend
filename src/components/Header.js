@@ -8,7 +8,6 @@ const Header = () => {
     <header className="w-full bg-secondBody drop-shadow-md rounded-3xl">
       <div className="flex h-[75px] rounded-lg items-center justify-end p-5">
         <ul className="flex gap-x-10 items-center">
-          {/* Check if user is available */}
           {user ? (
             <>
               <span className='text-textColor text-xl font-semibold leading-22'>

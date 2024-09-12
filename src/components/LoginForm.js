@@ -2,10 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Image from "next/image";
-
-import IconEye from "../../public/svg/eye.svg";
-import IconEyeOff from "../../public/svg/eye-off.svg";
+import Image from 'next/image';
+import IconEye from '../../public/svg/eye.svg';
+import IconEyeOff from '../../public/svg/eye-off.svg';
 import { loginSchema, validateForm } from '@@/utils/validation';
 import { useUser } from '@@/context/UserContext';
 
@@ -25,12 +24,13 @@ const LoginForm = () => {
       setMessage(`Validation Error: ${validationError}`);
       return;
     }
+
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/login`, { email, password });
       
-      // Убедитесь, что user существует в response.data
+      
       if (response.data.user) {
-        setUser(response.data.user); // Устанавливаем пользователя в контексте
+        setUser(response.data.user);
       } else {
         setMessage('Error: User data is missing in response');
       }
@@ -40,7 +40,6 @@ const LoginForm = () => {
       setPassword('');
 
       router.push('/main');
-
     } catch (error) {
       setMessage('Error: ' + (error.response?.data?.message || 'Unknown error'));
     }
@@ -65,7 +64,7 @@ const LoginForm = () => {
         />
         <div className="relative">
           <input
-            type={passwordVisible ? "text" : "password"} 
+            type={passwordVisible ? 'text' : 'password'}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -82,8 +81,8 @@ const LoginForm = () => {
             <Image priority src={IconEyeOff} alt="Eye" />}  
           </button>
         </div>
-        <button type="submit" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-        >LOGIN
+        <button type="submit" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">
+          LOGIN
         </button>
       </form>
 
@@ -96,7 +95,6 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
 // import { useState } from 'react';
 // import axios from 'axios';
 // import Link from 'next/link';
