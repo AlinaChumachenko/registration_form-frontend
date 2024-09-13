@@ -7,9 +7,8 @@ const Header = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    logout();
-
-    router.push('/login');
+    logout(); 
+    router.push('/login'); 
   };
 
   const handleWarningLogOut = () => {
@@ -18,6 +17,7 @@ const Header = () => {
       handleLogout();
     }
   };
+
   return (
     <header className="w-full bg-secondBody drop-shadow-md rounded-3xl">
       <div className="flex h-[75px] rounded-lg items-center justify-end p-5">

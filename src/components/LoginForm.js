@@ -29,7 +29,10 @@ const LoginForm = () => {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/login`, { email, password });
       
       
-      if (response.data.user) {
+      if (response.data.token) {
+       
+        localStorage.setItem('token', response.data.token);
+        
         setUser(response.data.user);
       } else {
         setMessage('Error: User data is missing in response');
