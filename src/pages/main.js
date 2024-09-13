@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from "@@/components/Header";
 import Footer from "@@/components/Footer";
-import Balance from '@@/components/Balanse';
+import Balance from '@@/components/Balance';
 import AddBudget from '@@/components/budget/AddBudget';
 import AddExpense from '@@/components/expense/AddExpense';
 
@@ -26,6 +26,7 @@ export default function Main() {
 
     const handleBudgetUpdate = (newBudget) => {
         setBudget(newBudget);
+        localStorage.setItem('budget', newBudget);
     };
 
     const handleExpensesUpdate = (newTotalExpenses) => {

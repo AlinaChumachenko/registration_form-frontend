@@ -24,6 +24,8 @@ const AddExpense = ({ onExpensesUpdate }) => {
         0
       );
       onExpensesUpdate(totalExpenses);
+    } else {
+      onExpensesUpdate(0);
     }
   }, [expenses, onExpensesUpdate]);
 
