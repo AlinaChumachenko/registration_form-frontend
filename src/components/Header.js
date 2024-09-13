@@ -24,9 +24,9 @@ const Header = () => {
         <ul className="flex gap-x-10 items-center">
           {user ? (
             <>
-              <span className='text-textColor text-xl font-semibold leading-22'>
+              <Link className='text-textColor text-2xl font-semibold leading-22' href="/profile">
                 Hello, {user.name}
-              </span>
+                </Link>
               <button
                 type="button"
                 className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
