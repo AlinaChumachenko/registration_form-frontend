@@ -38,7 +38,7 @@ const AddBudget = ({ onBudgetUpdate }) => {
       />
 
       <div className="mb-4 text-lg font-semibold">
-        Budget: ${budget !== null ? budget : 'Not set'}
+        Budget: ${budget !== null ? budget.toFixed(2) : 'Not set'}
       </div>
     </div>
   );
