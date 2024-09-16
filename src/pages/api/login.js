@@ -24,8 +24,8 @@ export default async function handler(req, res) {
 
       const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
 
-      return res.status(200).json({
-        user: { name: user.name, email: user.email },
+      return res.status(200).json({        
+        user,
         message: 'User logged in successfully',
         token,
       });
