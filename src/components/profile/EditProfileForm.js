@@ -3,11 +3,9 @@ import axios from 'axios';
 import { useUser } from '../../context/UserContext';
 
 const EditProfileForm = ({ onClose, onProfileUpdate }) => {
-  const { setUser } = useUser();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState(null);
-  const [password, setPassword] = useState('');
+  const { user, setUser } = useUser();
+  const [name, setName] = useState(user?.name || '');
+  const [email, setEmail] = useState(user?.email || '');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -15,26 +13,31 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
     setLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      if (avatar) formData.append('avatar', avatar);
-      if (password) formData.append('password', password);
-
-      const response = await axios.put(`${process.env.NEXT_PUBLIC_PATH}/api/user/update`, formData, {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_PATH}/api/user/update`, {
+        email: user.email,
+        name,
+        newEmail: email
+      }, {
         headers: {
-          'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
 
+      
       setUser(response.data.user);
       onProfileUpdate(response.data.user);
+
       alert('Profile updated successfully!');
+
+      setName('');
+      setEmail('');
+
       onClose();
     } catch (error) {
+
       console.error('Error updating profile:', error);
       alert('Error updating profile');
+      
     } finally {
       setLoading(false);
     }
@@ -57,24 +60,6 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border rounded p-2"
-        />
-      </label>
-      <label>
-        Avatar:
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setAvatar(e.target.files[0])}
-          className="border rounded p-2"
-        />
-      </label>
-      <label>
-        New password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           className="border rounded p-2"
         />
       </label>

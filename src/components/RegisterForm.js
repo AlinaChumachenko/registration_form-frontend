@@ -30,8 +30,8 @@ const RegisterForm = () => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/register`, { name, email, password });
       if (response.data.user) {
-        localStorage.setItem('token', response.data.token); // Сохранение токена
-        setUser(response.data.user); // Обновление состояния пользователя
+        localStorage.setItem('token', response.data.token);
+        setUser(response.data.user);
       }
       
       setMessage(response.data.message);
@@ -44,31 +44,6 @@ const RegisterForm = () => {
       setMessage('Error: ' + error.response.data.message);
     }
   };
-
-  //  const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const validationError = validateForm(registerSchema, { name, email, password });
-  //   if (validationError) {
-  //     setMessage(`Validation Error: ${validationError}`);
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post(`${process.env.NEXT_PUBLIC_PATH}/api/register`, { name, email, password });
-  //     setUser(response.data.user);
-      
-  //     setMessage(response.data.message);
-  //     setName('');
-  //     setEmail('');
-  //     setPassword('');
-
-  //     router.push('/login');
-      
-  //   } catch (error) {
-  //     setMessage('Error: ' + error.response.data.message);
-  //   }
-  // };
 
   const handleClickPasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
