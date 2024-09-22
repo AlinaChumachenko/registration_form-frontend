@@ -10,6 +10,7 @@ export default async function handler(req, res) {
 
   try {
     const { email, newEmail, name } = req.body;
+    // const { email, newEmail, name } = req.body;
 
     const user = await User.findOne({ email });
 

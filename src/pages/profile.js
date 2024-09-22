@@ -3,6 +3,9 @@ import { useUser } from '../context/UserContext';
 import Image from 'next/image';
 import EditProfileModal from '@@/components/profile/EditProfileModal';
 import UpdateProfileBtn from '@@/components/profile/UpdateProfileBtn';
+import Link from "next/link";
+import Header from "@@/components/Header";
+
 
 export default function Profile() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -16,6 +19,16 @@ export default function Profile() {
   };
 
   return (
+    <div className='flex min-h-screen flex-col p-10 gap-y-4'>
+      <Header />
+      {/* <div className="w-full bg-secondBody drop-shadow-md rounded-3xl flex h-[75px] items-center justify-end p-5">
+      <ul className="flex gap-x-10">
+
+        <Link className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105" href="/main">Back to main</Link>        
+
+      </ul>
+      </div> */}
+
     <div className='mx-auto w-full px-4'>
       {user ? (
         <div className='mx-auto w-full px-4'>
@@ -44,5 +57,7 @@ export default function Profile() {
         <p>Loading user data...</p>
       )}
     </div>
+    </div>
+    
   );
 }

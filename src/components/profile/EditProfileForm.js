@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../context/UserContext';
 
@@ -8,6 +8,7 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
   const [email, setEmail] = useState(user?.email || '');
   const [loading, setLoading] = useState(false);
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -16,7 +17,8 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
       const response = await axios.put(`${process.env.NEXT_PUBLIC_PATH}/api/user/update`, {
         email: user.email,
         name,
-        newEmail: email
+        newEmail: email,
+       
       }, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -27,10 +29,7 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
       setUser(response.data.user);
       onProfileUpdate(response.data.user);
 
-      alert('Profile updated successfully!');
-
-      setName('');
-      setEmail('');
+      alert('Profile updated successfully!');-
 
       onClose();
     } catch (error) {
