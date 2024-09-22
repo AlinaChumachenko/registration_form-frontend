@@ -35,13 +35,10 @@ export default function Main() {
 
     return (
         <div className='flex min-h-screen flex-col p-10 gap-y-4'>
-            <Header />
             <Balance balance={balance} />
             <h1 className="text-textColor text-2xl font-semibold mx-auto leading-22">Family Budget Tracker</h1>
             <AddBudget onBudgetUpdate={handleBudgetUpdate} />
             <AddExpense onExpensesUpdate={handleExpensesUpdate} />
-            
-            <Footer />
         </div>
     );
 }
