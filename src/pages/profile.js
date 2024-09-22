@@ -3,9 +3,6 @@ import { useUser } from '../context/UserContext';
 import Image from 'next/image';
 import EditProfileModal from '@@/components/profile/EditProfileModal';
 import UpdateProfileBtn from '@@/components/profile/UpdateProfileBtn';
-import Link from "next/link";
-import Header from "@@/components/Header";
-
 
 export default function Profile() {
   const [isOpenModal, setIsOpenModal] = useState(false);

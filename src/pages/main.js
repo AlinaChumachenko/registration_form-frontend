@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Footer from "@@/components/Footer";
 import Balance from '@@/components/Balance';
 import AddBudget from '@@/components/budget/AddBudget';
 import AddExpense from '@@/components/expense/AddExpense';
-import Header from '@@/components/Header';
-
 
 export default function Main() {
     const [budget, setBudget] = useState(0);

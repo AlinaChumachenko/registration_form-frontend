@@ -30,7 +30,7 @@ const Header = () => {
               <StyledLink href="/" onClick={handleWarningLogOut}>Log Out</StyledLink>
             </>
           )}
-          {router.pathname === "/main" && user ? ( // Проверяем, находимся ли на /main и есть ли пользователь
+          {router.pathname === "/main" && user ? (
             <>
               <div className="flex items-center gap-x-4">
                 <Image
