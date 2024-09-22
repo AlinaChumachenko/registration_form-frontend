@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useUser } from '../context/UserContext';
 import { useRouter } from "next/router";
 import Image from "next/image";
+import StyledLink from "./StyledLink";
 
 const Header = () => {
   const { user, logout } = useUser();
@@ -25,8 +26,8 @@ const Header = () => {
         <ul className="flex space-x-4">
           {router.pathname === "/profile" && (
             <>
-              <Link href="/main" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Back to Main</Link>
-              <Link href="/" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Log Out</Link>
+              <StyledLink href="/main">Back to Main</StyledLink>
+              <StyledLink href="/" onClick={handleWarningLogOut}>Log Out</StyledLink>
             </>
           )}
           {router.pathname === "/main" && user ? ( // Проверяем, находимся ли на /main и есть ли пользователь
@@ -40,10 +41,8 @@ const Header = () => {
                   width={40}
                   height={40}
                 />
-                <Link href="/profile" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">
-                  {user.name}
-                </Link>
-              </div>
+                <StyledLink href="/profile">{user.name}</StyledLink>
+               </div>
               <button
                 type="button"
                 className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
@@ -56,15 +55,15 @@ const Header = () => {
             <>
               {router.pathname === "/" && (
                 <>
-                  <Link href="/register" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Register</Link>
-                  <Link href="/login" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Log In</Link>
+                 <StyledLink href="/register">Register</StyledLink>
+                 <StyledLink href="/login">Log In</StyledLink> 
                 </>
               )}
               {router.pathname === "/login" && (
-                <Link href="/" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Back to Home</Link>
-              )}
+                <StyledLink href="/">Back to Home</StyledLink>
+                )}
               {router.pathname === "/register" && (
-                <Link href="/" className="bg-secondColor border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105">Back to Home</Link>
+                <StyledLink href="/">Back to Home</StyledLink>
               )}
             </>
           )}
