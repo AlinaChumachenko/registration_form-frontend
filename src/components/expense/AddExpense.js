@@ -11,7 +11,7 @@ const AddExpense = ({ onExpensesUpdate }) => {
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/getExpenses`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/expense/getExpenses`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -38,13 +38,13 @@ const AddExpense = ({ onExpensesUpdate }) => {
     try {
       let response;
       if (editExpense !== null) {
-        response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/updateExpense`, {
+        response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/expense/updateExpense`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editExpense._id, ...newExpense }),
         });
       } else {
-        response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/addExpense`, {
+        response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/expense/addExpense`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newExpense),
@@ -76,7 +76,7 @@ const AddExpense = ({ onExpensesUpdate }) => {
   const handleDelete = async (index) => {
     const expenseToDelete = expenses[index];
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/deleteExpense`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/expense/deleteExpense`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: expenseToDelete._id }),

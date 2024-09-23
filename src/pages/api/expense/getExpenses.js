@@ -1,5 +1,5 @@
-import mongodb from '../../lid/mongodb';
-import Expense from '../../models/Expenses';
+import mongodb from '../../../lid/mongodb';
+import Expense from '../../../models/Expenses';
 
 const handler = async (req, res) => {
   await mongodb();
