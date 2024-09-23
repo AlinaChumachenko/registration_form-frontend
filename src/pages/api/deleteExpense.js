@@ -5,7 +5,7 @@ const handler = async (req, res) => {
   await mongodb();
 
   if (req.method === 'DELETE') {
-    const { id } = req.body; // Получаем ID из тела запроса
+    const { id } = req.body;
 
     try {
       const deletedExpense = await Expense.findByIdAndDelete(id);

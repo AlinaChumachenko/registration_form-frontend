@@ -28,28 +28,76 @@ const AddExpense = ({ onExpensesUpdate }) => {
     onExpensesUpdate(totalExpenses);
   }, [expenses, onExpensesUpdate]);
 
+
+  // const handleAddExpense = async (newExpense) => {
+  //   if (editExpense !== null) {
+  //     // Обновление существующего расхода
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/updateExpense`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ id: editExpense._id, ...newExpense }),
+  //     });
+
+  //     const updatedExpense = await response.json();
+  //     const updatedExpenses = expenses.map((expense) =>
+  //       expense._id === updatedExpense._id ? updatedExpense : expense
+  //     );
+  //     setExpenses(updatedExpenses);
+  //     setEditExpense(null);
+  //   } else {
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/addExpense`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(newExpense),
+  //     });
+
+  //     const savedExpense = await response.json();
+  //     setExpenses([...expenses, savedExpense]);
+  //   }
+  //   setIsOpenModal(false);
+  // };
+
   const handleAddExpense = async (newExpense) => {
     if (editExpense !== null) {
-      const updatedExpenses = expenses.map((expense, index) =>
-        index === editExpense.index ? newExpense : expense
-      );
-      setExpenses(updatedExpenses);
-      setEditExpense(null);
-    } else {
-      // const response = await fetch('/api/addExpense', {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/addExpense`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newExpense),
-      });
+        const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/updateExpense`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: editExpense._id, ...newExpense }),
+        });
 
-      const savedExpense = await response.json();
-      setExpenses([...expenses, savedExpense]);
-    }
-    setIsOpenModal(false);
-  };
+        const updatedExpense = await response.json();
+
+        if (updatedExpense && updatedExpense._id) {
+            const updatedExpenses = expenses.map((expense) =>
+                expense._id === updatedExpense._id ? updatedExpense : expense
+            );
+            setExpenses(updatedExpenses);
+        } else {
+            console.error('Updated expense is null or does not have an _id:', updatedExpense);
+        }
+
+        setEditExpense(null);
+      } else {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_PATH}/api/addExpense`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newExpense),
+            });
+      
+            const savedExpense = await response.json();
+            setExpenses([...expenses, savedExpense]);
+          }
+          setIsOpenModal(false);
+        };
+
 
   const handleEdit = (index) => {
     setEditExpense({ ...expenses[index], index });
@@ -103,11 +151,17 @@ const AddExpense = ({ onExpensesUpdate }) => {
         {expenses.length > 0 ? (
           expenses.map((expense, index) => (
             <ExpenseCard
-              key={index}
-              expense={expense}
-              onDelete={() => handleDelete(index)}
-              onEdit={() => handleEdit(index)}
+            key={expense._id}
+            expense={expense}
+            onDelete={() => handleDelete(index)}
+            onEdit={() => handleEdit(index)}
             />
+            // <ExpenseCard
+            //   key={index}
+            //   expense={expense}
+            //   onDelete={() => handleDelete(index)}
+            //   onEdit={() => handleEdit(index)}
+            // />
           ))
         ) : (
           <p>No expenses added yet.</p>
