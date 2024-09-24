@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
 
-// const getAvatarUrl = (seed) => `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${seed}`;
+
 const getAvatarUrl = (seed) => `https://api.dicebear.com/9.x/bottts/svg?seed=${seed}`;
 export default async function handler(req, res) {
   if (req.method === 'POST') {

@@ -11,6 +11,7 @@ export default function Profile() {
   const handleOpenModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
 
+
   const handleProfileUpdate = (updatedUser) => {
     setUser(updatedUser);
   };
