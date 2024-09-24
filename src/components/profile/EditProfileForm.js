@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../context/UserContext';
+import Button from '../Button';
 
 const EditProfileForm = ({ onClose, onProfileUpdate }) => {
   const { user, setUser } = useUser();
@@ -62,13 +63,7 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
           className="border rounded p-2"
         />
       </label>
-      <button
-        type="submit"
-        className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-        disabled={loading}
-      >
-        {loading ? 'Updating...' : 'Update'}
-      </button>
+      <Button isSubmit disabled={loading} text={loading ? 'Updating...' : 'Update'} />
     </form>
   );
 };

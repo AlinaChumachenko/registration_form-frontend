@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import IconClose from '../../../public/images/closex.svg';
-import AddAmountBtn from './AddAmountBtn';
+import Button from '../Button';
 
 const AddBudgetModal = ({ isOpen, onClose, onSubmit }) => {
   const [amount, setAmount] = useState('');
@@ -34,7 +34,7 @@ const AddBudgetModal = ({ isOpen, onClose, onSubmit }) => {
             className="p-2 border border-secondColor rounded-lg"
           />
           <div className="flex justify-center space-x-2">
-            <AddAmountBtn onClick={handleSubmit} />
+            <Button onClick={handleSubmit} text="ADD AMOUNT" />
           </div>
         </form>
       </div>

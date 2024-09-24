@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddBudgetModal from "./AddBudgetModal";
-import SetBudgetBtn from "./SetBudgetBtn";
+import Button from "../Button";
 
 const AddBudget = ({ onBudgetUpdate }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -29,7 +29,7 @@ const AddBudget = ({ onBudgetUpdate }) => {
 
   return (
     <div>
-      <SetBudgetBtn onClick={handleOpenModal} />       
+      <Button onClick={handleOpenModal} text="SET BUDGET" />     
 
       <AddBudgetModal
         isOpen={isOpenModal}

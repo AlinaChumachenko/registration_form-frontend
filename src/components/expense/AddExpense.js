@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import ExpenseCard from "./ExpenseCard";
 import AddExpenseModal from "./AddExpenseModal";
-import AddExpenseBtn from "./AddExpenseBtn";
+import Button from "../Button";
+// import AddExpenseBtn from "./AddExpenseBtn";
 
 // Функция для получения userId из токена
 const getUserIdFromToken = (token) => {
@@ -151,7 +152,8 @@ const AddExpense = ({ onExpensesUpdate }) => {
       <div className="mb-4 text-lg font-semibold">
         Total Expenses: ${totalExpenses.toFixed(2)}
       </div>
-      <AddExpenseBtn onClick={() => setIsOpenModal(true)} />
+      {/* <AddExpenseBtn onClick={() => setIsOpenModal(true)} /> */}
+      <Button onClick={() => setIsOpenModal(true)} text="ADD EXPENSE" />  
       <AddExpenseModal
         isOpenModal={isOpenModal}
         closeModal={() => setIsOpenModal(false)}

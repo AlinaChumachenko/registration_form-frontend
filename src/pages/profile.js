@@ -3,6 +3,7 @@ import { useUser } from '../context/UserContext';
 import Image from 'next/image';
 import EditProfileModal from '@@/components/profile/EditProfileModal';
 import UpdateProfileBtn from '@@/components/profile/UpdateProfileBtn';
+import Button from "@@/components/Button";
 
 export default function Profile() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -35,7 +36,7 @@ export default function Profile() {
                 <p>Email: {user.email}</p>
               </div>
             </div>
-            <UpdateProfileBtn onClick={handleOpenModal} />
+            <Button onClick={handleOpenModal} text="Update Profile" />
             <EditProfileModal
               isOpen={isOpenModal}
               onClose={closeModal}

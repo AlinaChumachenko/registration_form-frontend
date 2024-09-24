@@ -1,6 +1,7 @@
 import React from "react";
-import UpdateCardBtn from "./UpdateCardBtn";
-import DeleteCardBtn from "./DeleteCardBtn";
+// import UpdateCardBtn from "./UpdateCardBtn";
+// import DeleteCardBtn from "./DeleteCardBtn";
+import Button from "../Button";
 
 const ExpenseCard = ({ expense, onDelete, onEdit }) => {
   const handleDelete = () => {
@@ -17,8 +18,10 @@ const ExpenseCard = ({ expense, onDelete, onEdit }) => {
       <p>Date: {expense.date}</p>
       <div className="flex space-x-2">
 
-        <UpdateCardBtn onClick={onEdit} />
-        <DeleteCardBtn onClick={handleDelete} />
+        {/* <UpdateCardBtn onClick={onEdit} />
+        <DeleteCardBtn onClick={handleDelete} /> */}
+        <Button onClick={onEdit} text="UPDATE" />
+        <Button onClick={handleDelete} text="DELETE" />
         
       </div>
     </div>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Button from "../Button";
 
 const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
   const [expenseName, setExpenseName] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
+
 
 
   useEffect(() => {
@@ -60,12 +62,7 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
       />
       {error && <p className="text-red-500">{error}</p>}
       <div className="flex justify-center space-x-2">
-        <button
-          type="submit"
-          className="bg-secondColor w-44 border text-textColor text-xl font-semibold p-2 rounded-lg transition-transform transform hover:scale-105"
-        >
-          {editExpense ? "UPDATE" : "CREATE"}
-        </button>
+        <Button isSubmit text={editExpense ? "UPDATE" : "CREATE"} />
       </div>
     </form>
   );
