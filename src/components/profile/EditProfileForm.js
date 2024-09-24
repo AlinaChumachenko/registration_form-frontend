@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast } from "react-toastify";
 import { useUser } from '../../context/UserContext';
 import Button from '../Button';
 
@@ -30,13 +31,13 @@ const EditProfileForm = ({ onClose, onProfileUpdate }) => {
       setUser(response.data.user);
       onProfileUpdate(response.data.user);
 
-      alert('Profile updated successfully!');-
+      toast('Profile updated successfully!');
 
       onClose();
     } catch (error) {
 
       console.error('Error updating profile:', error);
-      alert('Error updating profile');
+      toast('Error updating profile');
       
     } finally {
       setLoading(false);

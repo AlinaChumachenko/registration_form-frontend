@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useUser } from '../context/UserContext';
 import { useRouter } from "next/router";
 import Image from "next/image";

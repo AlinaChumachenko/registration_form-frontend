@@ -1,6 +1,5 @@
 import React from "react";
-// import UpdateCardBtn from "./UpdateCardBtn";
-// import DeleteCardBtn from "./DeleteCardBtn";
+import { toast } from "react-toastify";
 import Button from "../Button";
 
 const ExpenseCard = ({ expense, onDelete, onEdit }) => {
@@ -8,6 +7,7 @@ const ExpenseCard = ({ expense, onDelete, onEdit }) => {
     const confirmed = window.confirm("Are you sure you want to delete this expense?");
     if (confirmed) {
       onDelete();
+      toast('Card deleted successfully!');
     }
   };
 
@@ -18,8 +18,6 @@ const ExpenseCard = ({ expense, onDelete, onEdit }) => {
       <p>Date: {expense.date}</p>
       <div className="flex space-x-2">
 
-        {/* <UpdateCardBtn onClick={onEdit} />
-        <DeleteCardBtn onClick={handleDelete} /> */}
         <Button onClick={onEdit} text="UPDATE" />
         <Button onClick={handleDelete} text="DELETE" />
         

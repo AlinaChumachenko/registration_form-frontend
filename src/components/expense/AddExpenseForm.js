@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Button from "../Button";
 
 const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
@@ -6,8 +7,6 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
-
-
 
   useEffect(() => {
     if (editExpense) {
@@ -36,6 +35,7 @@ const AddExpenseForm = ({ onSubmit, closeModal, editExpense }) => {
     setAmount('');
     setDate('');
     closeModal();
+    toast('Card updated successfully!');
   };
 
   return (
