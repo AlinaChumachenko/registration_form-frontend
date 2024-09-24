@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useUser } from '../context/UserContext';
 import Image from 'next/image';
 import EditProfileModal from '@@/components/profile/EditProfileModal';
-import UpdateProfileBtn from '@@/components/profile/UpdateProfileBtn';
 import Button from "@@/components/Button";
 
 export default function Profile() {
